@@ -29,10 +29,8 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const response = await fetch(`https://api.enye.tech/v1/challenge/records`);
-      console.log('response -> ', response);
       let data = await response.json();
       setUserProfile(data);
-      console.log("data --> ", data);
     })();
     
     setIsLoaded(true);
@@ -43,74 +41,75 @@ const columns = [
   {
     name: "SN",
     options: {
-     filter: false,
-     sort: false,
-     customBodyRender: (value, tableMeta) => {
-       return (tableMeta.rowIndex) + 1
-     }
+      filter: false,
+      sort: false,
+      customBodyRender: (value, tableMeta) => {
+        return (tableMeta.rowIndex) + 1
+      }
     }
    },
- {
-  name: "FirstName",
-  label: "FirstName",
-  options: {
-   filter: false,
-   sort: true,
-  }
- },
- {
-  name: "LastName",
-  label: "LastName",
-  options: {
-   filter: false,
-   sort: true,
-  }
- },
- {
-  name: "Gender",
-  label: "Gender",
-  options: {
-   filter: true,
-   sort: false,
-  }
- },
- {
-  name: "Email",
-  label: "Email",
-  options: {
-   filter: false,
-   sort: false,
-  }
- },
- {
-  name: "PaymentMethod",
-  label: "Payment Method",
-  options: {
-   filter: true,
-   sort: false,
-  }
- },
+   {
+    name: "FirstName",
+    label: "FirstName",
+    options: {
+      filter: false,
+      sort: true,
+    }
+  },
+  {
+    name: "LastName",
+    label: "LastName",
+    options: {
+      filter: false,
+      sort: true,
+    }
+  },
+  {
+    name: "Gender",
+    label: "Gender",
+    options: {
+      filter: true,
+      sort: false,
+    }
+  },
+  {
+    name: "Email",
+    label: "Email",
+    options: {
+      filter: false,
+      sort: false,
+    }
+  },
+  {
+    name: "PaymentMethod",
+    label: "Payment Method",
+    options: {
+      filter: true,
+      sort: false,
+    }
+  },
 ];
 
 const options = {
   filterType: 'dropdown',
   rowsPerPage: 20,
-  rowsPerPageOptions: []
+  rowsPerPageOptions: [],
+  textLabels: {
+    body: {
+      noMatch: "Please wait, fetching data...",
+    },
+  }
 };
 
-console.log('records -> ', userProfile);
-console.log('userProfile -> ', userProfile.records.profiles);
-  
-  return (
-    <div className={classes.root}>
-      { !isLoaded ? <ProgressView /> : (
-        <MUIDataTable className={classes.table}
-          title={"Customer Profile"}
-          data={userProfile.records.profiles}
-          columns={columns}
-          options={options}
-        />
-      )}
-    </div>
-  );
-}
+return (
+  <div className={classes.root}>
+    { !isLoaded ? <ProgressView /> : (
+      <MUIDataTable className={classes.table}
+        title={"Customer Profile"}
+        data={userProfile.records.profiles}
+        columns={columns}
+        options={options}
+      />
+    )}
+  </div>
+)};

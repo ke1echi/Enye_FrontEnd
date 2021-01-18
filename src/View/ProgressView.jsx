@@ -4,9 +4,9 @@ import Skeleton from '@material-ui/lab/Skeleton';
 export default function ProgressView() {
   return (
     <div>
-      <Skeleton variant="text" />
-      <Skeleton variant="circle" width={40} height={40} />
-      <Skeleton variant="rect" width={210} height={118} />
+      <Skeleton variant="text" width={250} height={40} />
+      <Skeleton variant="text" height={40} />
+      <Skeleton variant="rect" height={450} />
     </div>
   );
 }
