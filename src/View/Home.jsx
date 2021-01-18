@@ -4,10 +4,16 @@ import MUIDataTable from "mui-datatables";
 import ProgressView from './ProgressView';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   table: {
-    minWidth: 650,
-  },
+    "& thead": {
+      "& th": {
+        backgroundColor: "#EFEFEF",
+        fontWeight: "bold",
+        fontSize: "16px"
+      }
+    }
+  } 
 }));
 
 
@@ -98,7 +104,7 @@ console.log('userProfile -> ', userProfile.records.profiles);
   return (
     <div className={classes.root}>
       { !isLoaded ? <ProgressView /> : (
-        <MUIDataTable
+        <MUIDataTable className={classes.table}
           title={"Customer Profile"}
           data={userProfile.records.profiles}
           columns={columns}
